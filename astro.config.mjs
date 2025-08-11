@@ -1,30 +1,21 @@
 import { defineConfig } from 'astro/config';
-
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 
 const DEV_PORT = 2121;
 
-// https://astro.build/config
 export default defineConfig({
-	site: process.env.CI
-		? 'https://themesberg.github.io'
-		: `http://localhost:${DEV_PORT}`,
-	base: process.env.VERCEL ? undefined : '/flowbite-astro-admin-dashboard',
+  site: process.env.CI
+    ? 'https://themesberg.github.io'
+    : `http://localhost:${DEV_PORT}`,
+  base: undefined, // <= penting kalau di Vercel root domain
 
-	// output: 'server',
+  server: {
+    port: DEV_PORT,
+  },
 
-	/* Like Vercel, Netlify,… Mimicking for dev. server */
-	// trailingSlash: 'always',
-
-	server: {
-		/* Dev. server only */
-		port: DEV_PORT,
-	},
-
-	integrations: [
-		//
-		sitemap(),
-		tailwind(),
-	],
+  integrations: [
+    sitemap(),
+    tailwind(),
+  ],
 });
