@@ -7,7 +7,7 @@ const DEV_PORT = 2121;
 
 // https://astro.build/config
 export default defineConfig({
-	site: process.env.VERCEL
+	site: process.env.CI
 		? 'https://themesberg.github.io'
 		: `http://localhost:${DEV_PORT}`,
 	base: process.env.VERCEL ? undefined : '/flowbite-astro-admin-dashboard',
